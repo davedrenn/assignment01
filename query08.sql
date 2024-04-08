@@ -28,7 +28,12 @@ FROM
             end_time
         FROM indego.trips_2022_q3
     )
-WHERE EXTRACT(DAY FROM start_time::TIMESTAMP) != EXTRACT(DAY FROM end_time::TIMESTAMP)
+WHERE
+    EXTRACT(
+        DAY FROM start_time::TIMESTAMP
+    ) != EXTRACT(
+        DAY FROM end_time::TIMESTAMP
+    )
 GROUP BY trip_year, trip_quarter;
 
 /*
