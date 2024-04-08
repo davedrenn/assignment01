@@ -12,20 +12,24 @@
 
 SELECT
     start_station AS station_id,
-    EXTRACT(QUARTER FROM start_time) AS trip_quarter,
+    station_geog,
     COUNT(*) AS num_trips
 FROM
     (
         SELECT
             duration,
             start_time,
-            end_time
+            end_time,
+            geography AS station_geog,
+            start_station
         FROM indego.trips_2021_q3
         UNION ALL
         SELECT
             duration,
             start_time,
-            end_time
+            end_time,
+            geography AS station_geog,
+            start_station
         FROM indego.trips_2022_q3
     )
 WHERE

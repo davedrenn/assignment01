@@ -7,14 +7,14 @@
 -- Enter your SQL query here
 
 SELECT
-    AVG(
-        ROUND(
+    ROUND(
+        AVG(
             ST_DISTANCE(
                 geography,
                 ST_MAKEPOINT(
                     -75.192584, 39.952415
                 )::GEOGRAPHY
-            )::NUMERIC / 1000, 0
-        ) * 1000
+            )::NUMERIC / 1000
+        )
     ) AS avg_distance_km
 FROM indego.indego_station_statuses;
