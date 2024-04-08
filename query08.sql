@@ -11,34 +11,23 @@
 -- Enter your SQL query here
 
 SELECT
-    start_station AS station_id,
-    station_geog,
+    commute.start_station AS station_id,
+    status.geography AS station_geog,
     COUNT(*) AS num_trips
-FROM
-    (
-        SELECT
-            duration,
-            start_time,
-            end_time,
-            geography AS station_geog,
-            start_station
-        FROM indego.trips_2021_q3
-        UNION ALL
-        SELECT
-            duration,
-            start_time,
-            end_time,
-            geography AS station_geog,
-            start_station
-        FROM indego.trips_2022_q3
-    )
-WHERE
-    EXTRACT(
-        DAY FROM start_time::TIMESTAMP
-    ) != EXTRACT(
-        DAY FROM end_time::TIMESTAMP
-    )
-GROUP BY trip_year, trip_quarter;
+FROM (
+    SELECT start_station
+    FROM indego.trips_2021_q3
+    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+    UNION ALL
+    SELECT start_station
+    FROM indego.trips_2022_q3
+    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+) AS commute
+INNER JOIN indego.indego_station_statuses AS status
+    ON commute.start_station = status.id::TEXT
+GROUP BY commute.start_station, status.geography
+ORDER BY num_trips DESC
+LIMIT 5;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the
