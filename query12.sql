@@ -6,3 +6,11 @@
 */
 
 -- Enter your SQL query here
+
+SELECT COUNT(*)
+FROM indego.indego_station_statuses
+WHERE ST_DWITHIN(
+    ST_MAKEPOINT(-75.192584, 39.952415)::GEOGRAPHY,
+    geography,
+    1000
+);

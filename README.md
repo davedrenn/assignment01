@@ -36,11 +36,7 @@ Load all three datasets into a PostgreSQL database schema named `indego` (the na
 * **Table**: `indego.trips_2022_q3`  
   **Fields**: (same as above)
 
-* **Table**: `indego.station_statuses`  
-  **Fields** (at a minimum -- there may be many more):
-    * `id INTEGER`
-    * `name TEXT` (or `CHARACTER VARYING`)
-    * `geog GEOGRAPHY`
+*  
     * ...
 
 ## Questions

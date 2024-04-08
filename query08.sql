@@ -10,6 +10,26 @@
 
 -- Enter your SQL query here
 
+SELECT
+    start_station AS station_id,
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM
+    (
+        SELECT
+            duration,
+            start_time,
+            end_time
+        FROM indego.trips_2021_q3
+        UNION ALL
+        SELECT
+            duration,
+            start_time,
+            end_time
+        FROM indego.trips_2022_q3
+    )
+WHERE EXTRACT(DAY FROM start_time::TIMESTAMP) != EXTRACT(DAY FROM end_time::TIMESTAMP)
+GROUP BY trip_year, trip_quarter;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the
