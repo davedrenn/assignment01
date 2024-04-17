@@ -19,6 +19,5 @@ SELECT
         )::NUMERIC / 50, 0
     ) * 50 AS distance
 FROM indego.indego_station_statuses
-GROUP BY station_id
 ORDER BY distance
 LIMIT 1;
