@@ -20,7 +20,7 @@ SELECT
             )::GEOGRAPHY
         )::NUMERIC / 50, 0
     ) * 50 AS distance
-FROM indego.indego_station_statuses
+FROM indego.station_statuses
 GROUP BY station_id
 ORDER BY distance DESC
 LIMIT 1;

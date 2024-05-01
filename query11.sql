@@ -17,4 +17,4 @@ SELECT
             )::NUMERIC / 1000
         )
     ) AS avg_distance_km
-FROM indego.indego_station_statuses;
+FROM indego.station_statuses;

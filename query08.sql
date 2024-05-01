@@ -23,7 +23,7 @@ FROM (
     FROM indego.trips_2022_q3
     WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
 ) AS commute
-INNER JOIN indego.indego_station_statuses AS status
+INNER JOIN indego.station_statuses AS status
     ON commute.start_station = status.id::TEXT
 GROUP BY commute.start_station, status.geography
 ORDER BY num_trips DESC
