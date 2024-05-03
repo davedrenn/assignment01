@@ -11,7 +11,7 @@
 
 SELECT
     id AS station_id,
-    geography AS station_geog,
+    geog AS station_geog,
     ROUND(
         ST_DISTANCE(
             geog,
