@@ -10,7 +10,7 @@ SELECT
     ROUND(
         AVG(
             ST_DISTANCE(
-                geography,
+                geog,
                 ST_MAKEPOINT(
                     -75.192584, 39.952415
                 )::GEOGRAPHY

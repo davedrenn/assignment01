@@ -12,7 +12,7 @@
 
 SELECT
     commute.start_station AS station_id,
-    status.geography AS station_geog,
+    status.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
     SELECT start_station
@@ -25,7 +25,7 @@ FROM (
 ) AS commute
 INNER JOIN indego.station_statuses AS status
     ON commute.start_station = status.id::TEXT
-GROUP BY commute.start_station, status.geography
+GROUP BY commute.start_station, status.geog
 ORDER BY num_trips DESC
 LIMIT 5;
 

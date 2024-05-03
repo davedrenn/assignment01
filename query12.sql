@@ -11,6 +11,6 @@ SELECT COUNT(*) AS num_stations
 FROM indego.station_statuses
 WHERE ST_DWITHIN(
     ST_MAKEPOINT(-75.192584, 39.952415)::GEOGRAPHY,
-    geography,
+    geog,
     1000
 );

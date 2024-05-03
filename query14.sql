@@ -13,7 +13,7 @@ SELECT
     name AS station_name,
     ROUND(
         ST_DISTANCE(
-            geography, ST_MAKEPOINT(
+            geog, ST_MAKEPOINT(
                 -75.192584, 39.952415
             )::GEOGRAPHY
         )::NUMERIC / 50, 0

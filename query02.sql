@@ -9,7 +9,14 @@
     Remember you can do calculations in the select clause.
 */
 
-SELECT ROUND((((q32022.q3_2022 - q32021.q3_2021)::decimal / q32021.q3_2021)::decimal * 100), 2) AS perc_change
+SELECT
+    ROUND(
+        (
+            (
+                (q32022.q3_2022 - q32021.q3_2021)::decimal / q32021.q3_2021
+            )::decimal * 100
+        ), 2
+    ) AS perc_change
 FROM
     (SELECT COUNT(*) AS q3_2021 FROM indego.trips_2021_q3) AS q32021,
     (SELECT COUNT(*) AS q3_2022 FROM indego.trips_2022_q3) AS q32022;
